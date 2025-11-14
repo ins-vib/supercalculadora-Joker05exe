@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Calculadora amb diverses funcions matemàtiques i simulacions.
  * Permet calcular dígits, suma, factorial, potències, llançaments de moneda i preu del cinema.
- * Autor: Joan del Tio
+ * Autor: Joan del Tio Barbera
  */
 public class Calculadora {
 
