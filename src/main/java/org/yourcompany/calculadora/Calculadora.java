@@ -1,19 +1,27 @@
 package org.yourcompany.calculadora;
+
 import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
- * @author Joan del Tio
+ * Calculadora amb diverses funcions matemàtiques i simulacions.
+ * Permet calcular dígits, suma, factorial, potències, llançaments de moneda i preu del cinema.
+ * Autor: Joan del Tio
  */
-
 public class Calculadora {
 
+    /**
+     * Mètode principal. Inicia el programa mostrant el menú.
+     * @param args arguments de línia de comandes (no s'utilitzen)
+     */
     public static void main(String[] args) {
-        mostrarMenu();  // Cridem al menú principal
+        mostrarMenu();  // Crida al menú principal
     }
 
-    // Funció que mostra un menú i permet triar una opció
+    /**
+     * Mostra el menú de l'aplicació i processa les opcions de l'usuari.
+     * Permet triar entre diverses funcions matemàtiques i simulacions.
+     */
     public static void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
         int opcio;
@@ -37,25 +45,21 @@ public class Calculadora {
                     int num = sc.nextInt();
                     System.out.println("Nombre de dígits: " + nombreDigits(num));
                     break;
-
                 case 2:
                     System.out.print("Introdueix n: ");
                     int n1 = sc.nextInt();
                     System.out.println("Suma dels primers " + n1 + " números: " + sumaPrimersNumeros(n1));
                     break;
-
                 case 3:
                     System.out.print("Introdueix n: ");
                     int n2 = sc.nextInt();
                     System.out.println("Factorial de " + n2 + ": " + calcularFactorial(n2));
                     break;
-
                 case 4:
                     System.out.print("Introdueix n: ");
                     int n3 = sc.nextInt();
                     System.out.println("Suma dels quadrats dels primers " + n3 + " números: " + sumaQuadrats(n3));
                     break;
-
                 case 5:
                     System.out.print("Introdueix la base: ");
                     int base = sc.nextInt();
@@ -63,13 +67,11 @@ public class Calculadora {
                     int exp = sc.nextInt();
                     System.out.println(base + " elevat a " + exp + " = " + calcularPotencia(base, exp));
                     break;
-
                 case 6:
                     System.out.print("Introdueix quants llançaments vols fer: ");
                     int llan = sc.nextInt();
                     System.out.println(llançamentMoneda(llan));
                     break;
-
                 case 7:
                     System.out.print("És cap de setmana? (true/false): ");
                     boolean capDeSetmana = sc.nextBoolean();
@@ -77,11 +79,9 @@ public class Calculadora {
                     boolean carnet = sc.nextBoolean();
                     System.out.println("Preu: " + PreuCinema(0, capDeSetmana, carnet) + " euros");
                     break;
-
                 case 0:
                     System.out.println("Sortint del programa...");
                     break;
-
                 default:
                     System.out.println("Opció no vàlida.");
                     break;
@@ -92,6 +92,11 @@ public class Calculadora {
         sc.close();
     }
 
+    /**
+     * Calcula el nombre de dígits d'un nombre enter.
+     * @param nombre El nombre del qual volem comptar els dígits
+     * @return Nombre de dígits
+     */
     public static int nombreDigits(int nombre) {
         if (nombre == 0) return 1;
         int comptador = 0;
@@ -102,10 +107,20 @@ public class Calculadora {
         return comptador;
     }
 
+    /**
+     * Calcula la suma dels primers n números naturals.
+     * @param n Nombre fins al qual volem sumar
+     * @return Suma dels primers n números
+     */
     public static int sumaPrimersNumeros(int n) {
         return n * (n + 1) / 2;
     }
 
+    /**
+     * Calcula el factorial d'un número.
+     * @param n Nombre del qual volem calcular el factorial
+     * @return Factorial de n
+     */
     public static int calcularFactorial(int n) {
         int factorial = 1;
         for (int i = 1; i <= n; i++) {
@@ -114,6 +129,11 @@ public class Calculadora {
         return factorial;
     }
 
+    /**
+     * Calcula la suma dels quadrats dels primers n números naturals.
+     * @param n Nombre fins al qual volem sumar els quadrats
+     * @return Suma dels quadrats dels primers n números
+     */
     public static int sumaQuadrats(int n) {
         int suma = 0;
         for (int i = 1; i <= n; i++) {
@@ -122,6 +142,12 @@ public class Calculadora {
         return suma;
     }
 
+    /**
+     * Calcula la potència d'una base elevada a un exponent.
+     * @param base Base
+     * @param exponent Exponent
+     * @return Base elevada a l'exponent
+     */
     public static int calcularPotencia(int base, int exponent) {
         int resultat = 1;
         for (int i = 1; i <= exponent; i++) {
@@ -130,6 +156,11 @@ public class Calculadora {
         return resultat;
     }
 
+    /**
+     * Simula llançaments de moneda.
+     * @param n Nombre de llançaments
+     * @return String amb el recompte de cares i creus
+     */
     public static String llançamentMoneda(int n) {
         Random rand = new Random();
         int cara = 0;
@@ -141,10 +172,17 @@ public class Calculadora {
         return "Cara: " + cara + ", Creu: " + creu;
     }
 
+    /**
+     * Calcula el preu del cinema segons si és cap de setmana i si té carnet jove.
+     * @param preu Preu inicial (no s'utilitza directament)
+     * @param capDeSetmana True si és cap de setmana
+     * @param carnetJove True si té carnet jove
+     * @return Preu final amb descompte aplicat, formatat a 2 decimals
+     */
     public static String PreuCinema(double preu, boolean capDeSetmana, boolean carnetJove) {
         double preuDiaLaborable = 5.0;
-        double preuCapDeSetmana = preuDiaLaborable * 1.4;
-        double descompteCarnetJove = 0.15;
+        double preuCapDeSetmana = preuDiaLaborable * 1.4; // augment del 40% el cap de setmana
+        double descompteCarnetJove = 0.15;                // descompte 15%
 
         if (capDeSetmana) preu = preuCapDeSetmana;
         else preu = preuDiaLaborable;
